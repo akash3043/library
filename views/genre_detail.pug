@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 #[strong Genre: ] #{data.genre.name}
+  br
+  h3 Books
+  each book in data.books_by_genre
+    hr
+    a(href=book.url) #{book.title}
+    p #{book.summary}
+  a(href=data.genre.url+'/delete')
+    button.btn.btn-primary Delete Genre
+  a(href=data.genre.url+'/update')
+    button.btn.btn-primary Update Genre

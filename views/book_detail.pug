@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1 Title : #{data.book_detail.title}
+    p #[strong Author: ]
+      a(href="data.book_detail.author.url") #{data.book_detail.author.name}
+    p #[strong Summary: ] #{data.book_detail.summary}
+    p #[strong ISBN: ] #{data.book_detail.isbn}
+    p #[strong Genre:]
+      a(href=data.book_detail.genre.url) #{data.book_detail.genre.name}
+
+    h3 Copies
+    each instance in data.instance_detail
+        hr
+        div
+          if(instance.status=='Available')
+            p.text-success Available
+          else if(instance.status=="Maintenance")
+            p.text-warning Maintenance
+          else
+            p.text-danger Loaned
+          p #[strong Imprint: ] #{instance.imprint}
+          if(instance.status!='Available')
+            p #[strong Due back: ] #{instance.due_back}
+          p #[strong Id: ]
+            a(href=instance.url) #{instance.id}
+    else
+      p There are no copies of this book available
+    a(href=data.book_detail.url+'/delete')
+      button.btn.btn-primary Delete Book
+    a(href=data.book_detail.url+'/update')
+      button.btn.btn-primary Update Author

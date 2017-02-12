@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1=title
+  ul
+  each author in authors
+    li
+      a(href=author.url) #{author.name}
+      |  (#{author.date_of_birth} - #{author.date_of_death})
+  else
+    li there are no authors available
+
+  br
+  a(href='/catalog/author/create')
+    Button.btn.btn-primary Create a new author

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 #[strong Author: ] #{data.author.name}
+  h6 (#{data.author.date_of_birth}-#{data.author.date_of_death})
+  br
+  h3 Books
+  each book in data.books_by_author
+    hr
+    a(href=book.url) #{book.title}
+    p #{book.summary}
+  a(href=data.author.url+'/delete')
+    button.btn.btn-primary Delete Author
+  a(href=data.author.url+'/update')
+    button.btn.btn-primary Update Author

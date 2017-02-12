@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+  h1= title
+
+  ul
+  if(book_list)
+    each book in book_list
+      li
+        a(href=book.url) #{book.title}
+        | (#{book.author.name})
+  else
+    li there are no books
+
+  br
+  a(href='/catalog/book/create')
+    Button.btn.btn-primary Create a new Book

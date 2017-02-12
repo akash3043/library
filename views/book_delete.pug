@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Book: #{book.title}
+  if book_instances.length
+    p.text-danger Delete the following instances before deleting the genre
+    each instance in book_instances
+      h3
+        a(href=instance.url) #{instance.imprint}
+  else
+    p #[strong Do you really want to delete this book?]
+    form(method='POST', action='')
+      div.form-group
+        input#book.form-control(type='hidden', value=book._id, name='book', required=true)
+      Button.btn.btn-primary(type='submit') Delete
